@@ -1,6 +1,6 @@
 package code;
 
-public class Demo {
+public class Java {
 	
 	public static int total(int howMuch, int quantity) {
 		return howMuch * quantity;
