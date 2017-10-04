@@ -1,0 +1,3 @@
+Hello world!
+This is a way to permanently store data onto
+your computer's harddrive.
