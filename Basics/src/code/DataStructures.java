@@ -1,6 +1,7 @@
 package code;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Random;
 
@@ -46,6 +47,14 @@ public class DataStructures {
 	public static int getRandomInteger(int min, int max) {
 		Random r = new Random();
 		return r.nextInt(max - min + 1) + min; // more efficient and random than (int)(Math.random() * (max - min + 1)) + min;
+	}
+	public static void aboutArrays() {
+		String allValues = "2016-12-06,109.949997,26075900";
+		String[] data = allValues.split(",");
+		ArrayList<String> dataInList = new ArrayList<String>(Arrays.asList(data));
+		for(String s : dataInList)
+			System.out.println(s);
+		
 	}
 	public static void main(String[] args) {
 		test();		
