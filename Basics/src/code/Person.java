@@ -26,9 +26,33 @@ public class Person {
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
+	public static void toInitials(Person p) {
+		p.setFirstName(p.getFirstName().substring(0, 1));
+		p.setLastName(p.getLastName().substring(0, 1));
+	}
 	
 	@Override
 	public String toString() {
 		return "Hi my name is " + this.firstName + " " + this.lastName + ". Nice to meet you!";
+	}
+	
+	public static void main(String[] args) {
+		//demo of object references
+		Person doe = new Person("Jane", "Doe");
+		Person anotherDoe = new Person("Jane", "Doe");
+		System.out.println(doe == anotherDoe);
+		System.out.println(doe);
+		System.out.println(anotherDoe);
+		System.out.println();
+		anotherDoe = doe;
+		System.out.println(doe == anotherDoe);
+		System.out.println(doe);
+		System.out.println(anotherDoe);
+		System.out.println();
+		
+		toInitials(doe);
+		System.out.println(doe);
+		System.out.println(anotherDoe);
+		
 	}
 }
