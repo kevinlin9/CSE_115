@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
+import java.io.File;
 import java.io.IOException;
 
 public class PS5_Files {
@@ -54,13 +56,18 @@ public class PS5_Files {
 
 
     static boolean Q5(String filename){
-    	try {
-    		Files.readAllLines(Paths.get(filename));
-    	} catch (IOException e){
-    		e.printStackTrace();
-    		return false;
-    	}
-        return true;
+    	// return false if file does not exist or true if it does exist
+    	File f = new File(filename);
+    	return f.exists();
+    	/* without using File but using Files
+    	 *  List<String> exists = null;
+	    	try {
+	    		exists = Files.readAllLines(Paths.get(filename));
+	    	} catch (IOException e){
+	    		e.printStackTrace();
+	    	}
+	        return exists == null;
+    	 */
     }
 
 
@@ -97,8 +104,8 @@ public class PS5_Files {
         // Given a line containing comma-separated values, return an ArrayList of Strings containing each value in the
         // line separately. Example: Given "comma,separated,values" return ["comma","separated","values"] as 3 entries
         // in an ArrayList.
-    	
-        return (ArrayList<String>) Arrays.asList(line.split(","));
+	    	
+	        return new ArrayList<String>(Arrays.asList(line.split(",")));
     }
 
 
@@ -160,22 +167,32 @@ public class PS5_Files {
 
     static void Q13(String filename, String data){
         // create a new file named filename and write the contents of data into it
-    	
+    	try {
+			Files.write(Paths.get(filename), data.getBytes(), StandardOpenOption.CREATE_NEW);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
     }
 
 
     static void Q14(String filename, String data){
         // append the contents of data to the end of filename. You can assume a file named filename already exists
-
+    	try {
+			Files.write(Paths.get(filename), data.getBytes(), StandardOpenOption.APPEND);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
     }
 
 
     static void Q15(String inputFilename, String outputFilename){
         // read every line in inputFilename and write it to a file named outputFilename (make a copy of the file)
-
+    	try {
+			Files.copy(Paths.get(inputFilename), Paths.get(outputFilename));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
     }
-
-
 
     public static void main(String[] args) {
         // sample usage
