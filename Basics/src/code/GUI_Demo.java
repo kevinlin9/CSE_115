@@ -28,6 +28,7 @@ public class GUI_Demo {
 		}
 		mainPanel.add(label);
 		JButton button = new JButton("Clickable button");
+		button.addActionListener(new EventHandlerA());
 		mainPanel.add(button);
 		
 		mainWindow.pack();
