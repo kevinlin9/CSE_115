@@ -37,7 +37,7 @@ public class GUI implements Runnable {
 		ActionListener x = new AddButtonHandler(m, this);
 		b1.addActionListener(x);
 		buttonPanel.add(b2);
-		ActionListener y = new AddButtonHandler(m, this);
+		ActionListener y = new SubButtonHandler(m, this);
 		b2.addActionListener(y);
 		
 				
