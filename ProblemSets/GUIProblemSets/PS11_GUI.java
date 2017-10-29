@@ -80,12 +80,10 @@ public class PS11_GUI{
         // Q12: add a KeyListener to your JTextField that will let the user submit a guess by hitting enter instead
         //      of clicking the submit button. You should only use the keyPressed event while leaving keyTyped and
         //      keyReleased empty. The keyPressed event should check if the key pressed was the enter key and if it
-        //      was call your makeGuess() method.
+        //      was, call your makeGuess() method.
     	
     	JPanel eastPanel = new JPanel();
     	inputText = new JTextField();
-    	eastPanel.add(inputText);
-    	JButton submit = new JButton("Submit");
     	KeyListener enterAGuess = new KeyListener() {
 			
 			@Override
@@ -94,17 +92,19 @@ public class PS11_GUI{
 			
 			@Override
 			public void keyReleased(KeyEvent e) {
-				if(e.getKeyCode() == KeyEvent.VK_ENTER) {
-					// TODO retrieve inputText values within this KeyListener
-				}
 			}
 			
 			@Override
 			public void keyPressed(KeyEvent e) {
+				if(e.getKeyCode() == KeyEvent.VK_ENTER) {
+					makeGuess();					
+				}
 			}
 		};
 		inputText.addKeyListener(enterAGuess);
 		eastPanel.add(inputText);
+		
+		JButton submit = new JButton("Submit");
 		ActionListener submitAGuess = new ActionListener() {
 			
 			@Override
@@ -127,8 +127,16 @@ public class PS11_GUI{
         // Q15: if the hiddenNumber is equal to the value in inputText, set the display text
         //      to "You guessed the number 23 in 7 guesses" except replace 23 and 7 with the values of the
         //      hidden number and number of guesses
-
-
+    	numberOfGuesses += 1;
+    	if(hiddenNumber > Integer.parseInt(inputText.getText())) {
+    		display.setText("Higher");
+    	}
+    	else if(hiddenNumber < Integer.parseInt(inputText.getText())) {
+    		display.setText("Lower");
+    	}
+    	else {
+    		display.setText("You guessed the number " + hiddenNumber + " in " + numberOfGuesses + " guesses");
+    	}
     }
 
 
